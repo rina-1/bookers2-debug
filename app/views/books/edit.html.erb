@@ -1,0 +1,24 @@
+<%= flash[:notice] %>
+<div class="container">
+	<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+  <h1>Editing Book</h1>
+  <% if @book.errors.any? %>
+  <h2><%= @book.errors.count %>件のerrorが発生しました。</h2>
+  <ul>
+  <% @book.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+  <%= render "books/newform", book: @book %>
+  <%= link_to "Show", @book, class: "book_#{@book.id}" %>
+  <%= link_to "Back", books_path, class: "back" %>
+
+  </div>
+  <div class="col-md-3"></div>
+
+  </div>
+</div>
