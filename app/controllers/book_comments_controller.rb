@@ -12,7 +12,6 @@ class BookCommentsController < ApplicationController
 		comment = current_user.book_comments.find(params[:id])
 		comment.destroy
 		redirect_back(fallback_location:root_path)
-
 	end
 
 	private
@@ -20,3 +19,7 @@ class BookCommentsController < ApplicationController
 		params.require(:book_comment).permit(:comment)
 	end
 end
+
+
+# comment = PostComment.new(post_comment_params)
+# comment.user_id = current_user.id

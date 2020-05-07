@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+   <div class="col-xs-3">
+   <h2>User info</h2>
+   <%= render 'users/profile', user: @user %>
+
+   <h2>New book</h2>
+   <%= render 'books/newform', book: @book %>
+
+   </div>
+  <div class="col-xs-9">
+  <h2>User followers</h2>
+   <table class="table">
+   	<thead>
+    <tr>
+      <th>image</th>
+	  <th>name</th>
+	  <th>follows</th>
+	  <th>followers</th>
+	  <th colspan="5"></th>
+	</tr>
+    </thead>
+    <tbody>
+	<% @followers.each do |user| %>
+	<tr>
+	  <td><%= attachment_image_tag(user, :profile_image, size:'100x100', fallback: "no-image-mini.jpg") %></td>
+      <td><%= user.name %></td>
+
+	  <td><%= user.followings.count %></td>
+
+	  <td><%= user.reverse_of_relationships.count %></td>
+
+	  <td><%= render 'relationships/follow_button', user: user %></td>
+
+	  <td><%= link_to "Show", user, class: "user_#{user.id}" %></td>
+	</tr>
+	<% end %>
+    </tbody>
+   </table>
+   </div>
+ </div>
+</div>
+
