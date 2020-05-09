@@ -29,6 +29,19 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  def self.search(method, search)
+    if method == "forward_match"
+        User.where(['name LIKE?', "#{search}%"])
+      elsif method == "backward_match"
+        User.where(['name LINKE?', "%#{search}"])
+      elsif method == "perfect_match"
+        User.where(['name LIKE?', "#{search}"])
+      else method =="partial_match"
+        User.where(['name LIKE?', "%#{search}%"])
+      end
+  end
+
+
   #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
   validates :name, presence:true, length:{maximum:20,minimum:2}
   validates :introduction, length:{maximum:50}

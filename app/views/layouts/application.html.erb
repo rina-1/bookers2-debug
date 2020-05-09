@@ -41,6 +41,16 @@
       <p></p>
       <p id="notice"><%= flash[:notice] %></p> <!--デバイスでnotice設定されているので呼び出してるだけ-->
 
+     <% if user_signed_in? %>
+      <p>検索</p>
+       <%= form_tag(searchs_search_path,:method => 'get') do %>
+       <%= text_field_tag :search %>
+       <%= select_tag(:option, options_for_select([["user", "1"],["book","2"]]))%>
+       <%= select(@search_content, :search_method, [["前方一致","forward_match"], ["後方一致","backward_match"], ["完全一致","perfect_match"], ["部分一致","partial_match"]])%>
+       <%= submit_tag 'Search', :name => nil %>
+       <% end %>
+       <% end %>
+
     </div>
     <%= yield %>
   </body>
