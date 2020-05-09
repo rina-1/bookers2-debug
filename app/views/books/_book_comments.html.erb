@@ -1,0 +1,20 @@
+<table>
+	<thead>
+		<tr>
+		  <th>コメントした人</th>
+		  <th>コメント内容</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% book.book_comments.each do |book_comment| %>
+	  <tr>
+	  	<td><%= book_comment.user.name %></td>
+	  	<td><%= book_comment.comment %></td>
+	    <td><% if book_comment.user_id == current_user.id %>
+            <%= link_to "Destroy", book_book_comment_path(book.id,book_comment.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-xs btn-danger" %>
+             <% end %>
+        </td>
+       </tr>
+    <% end %>
+	</tbody>
+</table>

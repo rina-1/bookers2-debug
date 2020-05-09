@@ -1,0 +1,4 @@
+$("#comments_area").html("<%= j(render 'books/book_comments', book: @book ) %>")
+$("textarea").val('')
+// ("textarea").val('')でコメント送信後のコメント入力フォームを空にしてる
+// { comments: @comment.book.comments }

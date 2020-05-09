@@ -1,0 +1,15 @@
+<td id="favorite-<%= book.id %>">
+<!-- どの本のいいねボタンか明確にするために本のidに名前つけてる　id="いいねー本のid１"　-->
+<% if book.favorited_by?(current_user) %>
+   <%= link_to book_favorites_path(book.id), method: :delete, remote: true do %>
+   <!-- 通常であればlink_toで呼ばれるアクションに対応するhtml.erbファイルを呼び出すところを　remote: trueをつけることで　js.erbを呼び出すことができる。なのでページ遷移が行われず非同期で通信が行えるようになる-->
+    <i class="fa fa-heart" aria-hidden="true" style="color: black;"></i>
+   <% end %>
+   <%= book.favorites.count %>
+<% else %>
+   <%= link_to book_favorites_path(book.id), method: :post, remote: true do %>
+    <i class="fa fa-heart-o" aria-hidden="true"></i>
+   <% end %>
+   <%= book.favorites.count %>
+   <% end %>
+</td>

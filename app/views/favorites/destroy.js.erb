@@ -1,0 +1,7 @@
+$("#favorite-<%= @book.id %>").html("<%= j(render 'books/favorite', book: @book ) %>");
+/* jQueryの書き方。#はidを指し示してる。_favorite.html.erbの１行目の　id="faborite-<%= @book.id %>"のこと
+/* jQueryのhtml()メソッドで指名したセレクタ("#favorite-<%= @book.id %>")のhtmlを("<%= j(render 'books/favorite', book: @book ) %>")に置き換えてる
+/* ("#favorite-<%= @book.id %>")内の処理だけサーバーとやり取りして取得し、取得したデータが入った("<%= j(render 'books/favorite', book: @book ) %>")に置き換えてる
+/* renderの記述内容は同じだが、中に入っているデータが違うので置き換える必要がある。
+/* j(render~....部分のjはescape_javascriptのエイリアスで、改行と括弧をエスケープしてくれるメソッド
+/* renderで表示されてるいいねボタンを押してないので押す→いいねボタンだけサーバーに送られ、いいね済のボタン返ってくる→いいね済のボタンrenderで表示する
