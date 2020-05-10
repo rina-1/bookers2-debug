@@ -41,6 +41,19 @@ class User < ApplicationRecord
       end
   end
 
+#include JpPrefectureでJpPrefecture::Prefectureを呼び出せるようにしてる
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+#13とかの数字をprefecture_code(都道府県のコード)として認識するために宣言してる
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+    #JpPrefectureのPrefectureの中から検索されたコードを探し、name(都道府県名)に変換してる
+  end
+
+  def prefecture_name(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).name
+  end
+
 
   #バリデーションは該当するモデルに設定する。エラーにする条件を設定できる。
   validates :name, presence:true, length:{maximum:20,minimum:2}

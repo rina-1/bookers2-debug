@@ -18,6 +18,21 @@
     <%= f.email_field :email, autofocus: true, class: "email" %>
   </div>
 
+  <div>Postal code</div>
+  <%= f.text_field :post_code %>
+
+  <div>Prefecture</div>
+  <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, include_blank: '都道府県'%>
+<!--f.collection_select　:メソッド名, オブジェクトの配列, value属性の項目(JpPrefecture::Prefectureの中で定義されてるcodeカラムで検索して),テキストの項目 (JpPrefecture::Prefectureの中で定義されてるnameカラムを表示させる)-->
+
+<!-- コンソールでJpPrefecture::Prefecture.allやshow-source JpPrefecture::Prefecture打つとJpPrefecture::Prefectureの中身を見ることができる"-->
+
+  <div>City</div>
+  <%= f.text_field :address_city %>
+
+  <div>Street</div>
+  <%= f.text_field :address_street %>
+
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
